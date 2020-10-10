@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./components/button";
-export default class App extends React.Component {
-  render() {
-    return (
-      <>
-        <p> Hello React!</p>
-        <Button />
-      </>
-    );
-  }
-}
+import { getTasks } from "./services/tasks_services";
+
+const App = () => {
+  useEffect(() => {
+    getTasks
+      .then((response) => {
+        console.log("response: ", response);
+      })
+      .catch((error) => console.log("error: ", error));
+  }, []);
+
+  return (
+    <>
+      <Button />
+    </>
+  );
+};
+
+export default App;
