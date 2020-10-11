@@ -4,10 +4,17 @@ import { getTasks } from "./services/tasks_services";
 
 const App = () => {
   useEffect(() => {
-    getTasks
+    fetch("http://127.0.0.1:5000/getTasks", {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    })
       .then((response) => {
         console.log("response: ", response);
+        return response.json();
       })
+      .then((data) => console.log("data: ", data))
       .catch((error) => console.log("error: ", error));
   }, []);
 

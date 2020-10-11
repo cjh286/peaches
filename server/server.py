@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import dao
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
@@ -13,7 +13,7 @@ def hello():
 
 @app.route("/getTasks")
 def getTasks():
-    return dao.main()
+    return jsonify(dao.main())
 
 if __name__ == "__main__":
     app.run()   

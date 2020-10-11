@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import os
+import json
 
 def create_connection(db_file):
     """create a database connection to a SQLite database"""
@@ -25,10 +26,9 @@ def select_all_tasks(conn):
 
     rows = cur.fetchall()
 
-    for row in rows:
-        print(row)
-
-    return rows
+    tasks = {}
+    tasks['tasks'] = rows
+    return tasks
 
 def main():
     database = os.path.abspath("sqlite/peaches.db")
@@ -37,7 +37,9 @@ def main():
     conn = create_connection(database)
     if conn:
         print("Query all tasks")
-        return select_all_tasks(conn)
+        rows = select_all_tasks(conn)
+        print(rows)
+        return rows
     else:
         print('failed')
 
