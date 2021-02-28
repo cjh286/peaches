@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "./components/button";
+import Header from "./components/header/header";
 import { getTasks } from "./services/tasks_services";
 
 const App = () => {
@@ -7,7 +8,7 @@ const App = () => {
     fetch("http://127.0.0.1:5000/getTasks", {
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     })
       .then((response) => {
@@ -20,6 +21,7 @@ const App = () => {
 
   return (
     <>
+      <Header />
       <Button />
     </>
   );
